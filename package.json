@@ -1,0 +1,22 @@
+{
+  "name": "computational-delay-server",
+  "version": "1.0.0",
+  "description": "The computational delay server is meant to be deployed on a kuberenetes cluster.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkbhk/computational-delay-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jkbhk/computational-delay-server/issues"
+  },
+  "homepage": "https://github.com/jkbhk/computational-delay-server#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
