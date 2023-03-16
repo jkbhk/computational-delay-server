@@ -19,13 +19,13 @@ if (cluster.isMaster) {
 	  let startTime = Date.now();
 
 	  // delay in ms
-	  let delay = 10000; 
+	  let delay = 5000; 
 
 	  // busy wait
 	  while (Date.now() - startTime < delay) {
 	  }
+	
 
-	  res.send('Computation complete.');
 	});
 
 
