@@ -1,27 +1,35 @@
+const cluster = require('cluster');
+const os = require('os');
 const express = require('express');
 const app = express();
 const port = 3020;
 
-// delay in seconds
-const delay = 10;
-
-var busy = false;
-
-app.get("/compute", (req, res) => {
-  if (busy) {
-    res.status(503).send("Server is currently busy, try again later.");
-    return;
+if (cluster.isMaster) {
+  // Create a worker process for each CPU core
+  for (let i = 0; i < os.cpus().length; i++) {
+    cluster.fork();
   }
+}else{
 
-  busy = true;
+	app.get('/compute', (req, res) => {
 
-  setTimeout(() => {
-    busy = false;
-    res.send("Computation complete.");
-  }, delay * 1000);
-});
+	  // immediately reply to indicate usage of the service
+	  res.send("computing.....")
 
-app.listen(port, () => {
-  console.log("Server listening on port " + port);
-});
+	  let startTime = Date.now();
 
+	  // delay in ms
+	  let delay = 10000; 
+
+	  // busy wait
+	  while (Date.now() - startTime < delay) {
+	  }
+
+	  res.send('Computation complete.');
+	});
+
+
+	app.listen(port, () => {
+	  console.log("Server listening on port " + port);
+	});
+}
